@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "102000536584",
+    "project_id": "voyager-mobile-app",
+    "storage_bucket": "voyager-mobile-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:102000536584:android:c14f1244b1cbd5214ab5bd",
+        "android_client_info": {
+          "package_name": "com.emmanuelanene.voyager"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-5OADP9AMJRN8-bUqW69Pa2eMagXrgnk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:102000536584:android:9f50dd7581328a8e4ab5bd",
+        "android_client_info": {
+          "package_name": "com.emmanuelanene.voyager.voyager"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-5OADP9AMJRN8-bUqW69Pa2eMagXrgnk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

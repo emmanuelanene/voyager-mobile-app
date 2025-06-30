@@ -4,6 +4,7 @@ class SearchedAddressModel {
   String mainName;
   String secondaryName;
   String placeID;
+
   SearchedAddressModel({
     required this.mainName,
     required this.secondaryName,

@@ -1,67 +1,81 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
+import 'package:voyager/common/controller/provider/authProvider.dart';
+import 'package:voyager/common/controller/provider/locattionProvider.dart';
+import 'package:voyager/common/controller/provider/profileDataProvider.dart';
+import 'package:voyager/common/view/signInLogic/signInLogin.dart';
+import 'package:voyager/constant/utils/colors.dart';
+import 'package:voyager/driver/controller/provider/rideRequestProvider.dart';
+import 'package:voyager/driver/controller/services/bottomNavBarRiderProvider.dart';
+import 'package:voyager/driver/controller/services/mapsProviderDriver.dart';
+import 'package:voyager/firebase_options.dart';
+import 'package:voyager/rider/controller/provider/bottomNavBarRiderProvider/bottomNavBarRiderProvider.dart';
+import 'package:voyager/rider/controller/provider/tripProvider/rideRequestProvider.dart';
 
-void main() {
-  runApp(const MyApp());
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  runApp(const Voyager());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Voyager extends StatefulWidget {
+  const Voyager({super.key});
 
-  // This widget is the root of your application.
+  @override
+  State<Voyager> createState() => _VoyagerState();
+}
+
+class _VoyagerState extends State<Voyager> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+    return Sizer(builder: (context, _, __) {
+      return MultiProvider(
+        providers: [
+          // ! Common Providers
+          ChangeNotifierProvider<MobileAuthProvider>(
+            create: (_) => MobileAuthProvider(),
+          ),
+          ChangeNotifierProvider<LocationProvider>(
+            create: (_) => LocationProvider(),
+          ),
+          ChangeNotifierProvider<ProfileDataProvider>(
+            create: (_) => ProfileDataProvider(),
+          ),
+          // ! Rider Providers
+          ChangeNotifierProvider<BottomNavBarRiderProvider>(
+            create: (_) => BottomNavBarRiderProvider(),
+          ),
+          ChangeNotifierProvider<RideRequestProvider>(
+            create: (_) => RideRequestProvider(),
+          ),
+          // ! Driver Providers
+          ChangeNotifierProvider<BottomNavBarDriverProvider>(
+            create: (_) => BottomNavBarDriverProvider(),
+          ),
+          ChangeNotifierProvider<MapsProviderDriver>(
+            create: (_) => MapsProviderDriver(),
+          ),
+          ChangeNotifierProvider<RideRequestProviderDriver>(
+            create: (_) => RideRequestProviderDriver(),
+          ),
+        ],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            appBarTheme: AppBarTheme(
+              color: white,
+              elevation: 0,
             ),
-          ],
+          ),
+          home: const SignInLogic(),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+      );
+      // return
+    });
   }
 }

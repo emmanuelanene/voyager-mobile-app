@@ -39,10 +39,35 @@ dependencies:
   cloud_firestore:
   firebase_storage:
   firebase_database:
+  firebase_messaging:
   just_audio:
   image_picker:
   persistent_bottom_nav_bar_v2:
+  persistent_bottom_nav_bar:
   sizer:
+
+  google_maps_flutter:
+  # for "context.read"
+  http:
+  provider:
+
+  geolocator:
+
+  flutter_styled_toast:
+
+  page_transition:
+
+  country_picker:
+  pin_code_fields:
+
+  flutter_svg:
+  flutter_polyline_points:
+  flutter_geofire:
+  flutter_swipe_button:
+
+  shimmer: ^3.0.0
+  sliding_up_panel: ^2.0.0+1
+
 
 dev_dependencies:
   flutter_test:
